@@ -31,34 +31,28 @@ func check_sufficient_wood() -> bool:
 	
 func check_sufficient_gold() -> bool:
 	return Global.get_gold_count() >= 50
+	
+func build(new_building, costs_gold: bool = false) -> void:
+	if costs_gold && !check_sufficient_gold():
+		return
+	if check_sufficient_wood():
+		add_new_building(new_building)
+		apply_build_cost_wood()
 
 func _on_button_build_tc_pressed() -> void:
-	if check_sufficient_gold() && check_sufficient_wood():
-		add_new_building(new_town_center.instantiate())
-		apply_build_cost_gold()
-		apply_build_cost_wood()
+	build(new_town_center.instantiate(), true)
 
 func _on_button_build_farm_pressed() -> void:
-	if check_sufficient_wood():
-		add_new_building(new_farm.instantiate())
-		apply_build_cost_wood()
+	build(new_farm.instantiate())
 
 func _on_button_build_house_pressed() -> void:
-	if check_sufficient_wood():
-		add_new_building(new_house.instantiate())
-		apply_build_cost_wood()
+	build(new_house.instantiate())
 
 func _on_button_build_barracks_pressed() -> void:
-	if check_sufficient_wood():
-		add_new_building(new_barracks.instantiate())
-		apply_build_cost_wood()
+	build(new_barracks.instantiate())
 
 func _on_button_build_range_pressed() -> void:
-	if check_sufficient_wood():
-		add_new_building(new_range_building.instantiate())
-		apply_build_cost_wood()
+	build(new_range_building.instantiate())
 		
 func _on_button_build_tower_pressed() -> void:
-	if check_sufficient_wood():
-		add_new_building(new_tower.instantiate())
-		apply_build_cost_wood()
+	build(new_tower.instantiate())
