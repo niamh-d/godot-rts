@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnxbs4q8crpuw"]
+[gd_scene load_steps=9 format=3 uid="uid://dnxbs4q8crpuw"]
 
 [ext_resource type="Texture2D" uid="uid://dfltos7cf50fk" path="res://art/town_center.png" id="1_fvj65"]
 [ext_resource type="Texture2D" uid="uid://cl2tnmjogd6br" path="res://art/house.png" id="2_ldcgo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://tjnjtm3gv56v" path="res://art/barracks.png" id="4_rc2w4"]
 [ext_resource type="Texture2D" uid="uid://bf7scmh3mmlwy" path="res://art/range.png" id="5_bsp2h"]
 [ext_resource type="Texture2D" uid="uid://btywg7dtung1p" path="res://art/tower.png" id="6_5yngy"]
+[ext_resource type="Script" path="res://scenes/main/camera.gd" id="7_1lofc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lufi6"]
 font_size = 120
@@ -65,7 +66,7 @@ text = "Population: 0/0"
 vertical_alignment = 1
 
 [node name="MiniMap" type="Node2D" parent="UI"]
-position = Vector2(0, -10)
+position = Vector2(-1, -10)
 
 [node name="OuterBox" type="Node2D" parent="UI/MiniMap"]
 position = Vector2(953, 526)
@@ -76,26 +77,26 @@ offset_bottom = 7.0
 
 [node name="ColorRect4" type="ColorRect" parent="UI/MiniMap/OuterBox"]
 offset_left = -2.0
-offset_top = 113.0
+offset_top = 112.0
 offset_right = 117.0
-offset_bottom = 120.0
+offset_bottom = 119.0
 
 [node name="ColorRect2" type="ColorRect" parent="UI/MiniMap/OuterBox"]
 offset_left = 1.0
-offset_top = 1.0
 offset_right = 120.0
-offset_bottom = 8.0
+offset_bottom = 7.0
 rotation = 1.5708
 
 [node name="ColorRect3" type="ColorRect" parent="UI/MiniMap/OuterBox"]
 offset_left = 119.0
-offset_top = 1.0
 offset_right = 238.0
-offset_bottom = 8.0
+offset_bottom = 7.0
 rotation = 1.5708
 
 [node name="Screen" type="Node2D" parent="UI/MiniMap"]
+unique_name_in_owner = true
 position = Vector2(995, 578)
+scale = Vector2(0.85, 1)
 
 [node name="ColorRect" type="ColorRect" parent="UI/MiniMap/Screen"]
 clip_contents = true
@@ -228,6 +229,7 @@ offset_bottom = 353.0
 text = "Play again"
 
 [node name="LoseScreen" type="Node2D" parent="UI"]
+visible = false
 
 [node name="Panel" type="Panel" parent="UI/LoseScreen"]
 offset_right = 1151.0
@@ -249,5 +251,6 @@ offset_right = 666.0
 offset_bottom = 353.0
 text = "Play again"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 323)
+script = ExtResource("7_1lofc")
