@@ -1,4 +1,11 @@
-[gd_scene format=3 uid="uid://dnxbs4q8crpuw"]
+[gd_scene load_steps=7 format=3 uid="uid://dnxbs4q8crpuw"]
+
+[ext_resource type="Texture2D" uid="uid://dfltos7cf50fk" path="res://art/town_center.png" id="1_fvj65"]
+[ext_resource type="Texture2D" uid="uid://cl2tnmjogd6br" path="res://art/house.png" id="2_ldcgo"]
+[ext_resource type="Texture2D" uid="uid://dshirno2fx1f" path="res://art/farm.png" id="3_7u6m1"]
+[ext_resource type="Texture2D" uid="uid://tjnjtm3gv56v" path="res://art/barracks.png" id="4_rc2w4"]
+[ext_resource type="Texture2D" uid="uid://bf7scmh3mmlwy" path="res://art/range.png" id="5_bsp2h"]
+[ext_resource type="Texture2D" uid="uid://btywg7dtung1p" path="res://art/tower.png" id="6_5yngy"]
 
 [node name="Main" type="Node2D"]
 
@@ -91,6 +98,106 @@ offset_right = 30.0
 offset_bottom = 15.0
 
 [node name="WorkerBuildOptions" type="Node2D" parent="UI"]
+
+[node name="TownCenter" type="Node2D" parent="UI/WorkerBuildOptions"]
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/WorkerBuildOptions/TownCenter"]
+position = Vector2(30, 525)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_fvj65")
+
+[node name="ButtonBuildTC" type="Button" parent="UI/WorkerBuildOptions/TownCenter/Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_left = -30.0
+offset_top = -16.0
+offset_right = 30.0
+offset_bottom = 34.0
+
+[node name="Farm" type="Node2D" parent="UI/WorkerBuildOptions"]
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/WorkerBuildOptions/Farm"]
+position = Vector2(70, 525)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_7u6m1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="UI/WorkerBuildOptions/Farm/Sprite2D"]
+position = Vector2(16, -18)
+texture = ExtResource("3_7u6m1")
+
+[node name="Sprite2D4" type="Sprite2D" parent="UI/WorkerBuildOptions/Farm/Sprite2D"]
+position = Vector2(-16, 18)
+texture = ExtResource("3_7u6m1")
+
+[node name="Sprite2D5" type="Sprite2D" parent="UI/WorkerBuildOptions/Farm/Sprite2D"]
+position = Vector2(-16, -18)
+texture = ExtResource("3_7u6m1")
+
+[node name="Sprite2D3" type="Sprite2D" parent="UI/WorkerBuildOptions/Farm/Sprite2D"]
+position = Vector2(18, 18)
+texture = ExtResource("3_7u6m1")
+
+[node name="ButtonBuildFarm" type="Button" parent="UI/WorkerBuildOptions/Farm/Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_left = -30.0
+offset_top = -16.0
+offset_right = 30.0
+offset_bottom = 34.0
+
+[node name="House" type="Node2D" parent="UI/WorkerBuildOptions"]
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/WorkerBuildOptions/House"]
+position = Vector2(110, 525)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ldcgo")
+
+[node name="ButtonBuildHouse" type="Button" parent="UI/WorkerBuildOptions/House/Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_left = -30.0
+offset_top = -16.0
+offset_right = 30.0
+offset_bottom = 34.0
+
+[node name="Barracks" type="Node2D" parent="UI/WorkerBuildOptions"]
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/WorkerBuildOptions/Barracks"]
+position = Vector2(150, 525)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_rc2w4")
+
+[node name="ButtonBuildBarracks" type="Button" parent="UI/WorkerBuildOptions/Barracks/Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_left = -30.0
+offset_top = -16.0
+offset_right = 30.0
+offset_bottom = 34.0
+
+[node name="Range" type="Node2D" parent="UI/WorkerBuildOptions"]
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/WorkerBuildOptions/Range"]
+position = Vector2(190, 525)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_bsp2h")
+
+[node name="ButtonBuildRange" type="Button" parent="UI/WorkerBuildOptions/Range/Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_left = -30.0
+offset_top = -16.0
+offset_right = 30.0
+offset_bottom = 34.0
+
+[node name="Tower" type="Node2D" parent="UI/WorkerBuildOptions"]
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/WorkerBuildOptions/Tower"]
+position = Vector2(230, 525)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_5yngy")
+
+[node name="ButtonBuildTower" type="Button" parent="UI/WorkerBuildOptions/Tower/Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_left = -30.0
+offset_top = -16.0
+offset_right = 30.0
+offset_bottom = 34.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 323)
