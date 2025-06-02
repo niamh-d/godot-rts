@@ -24,6 +24,20 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
+	
+func get_gold_count():
+	return gold_count
+
+func increment_gold_count(amount: int):
+	var new_val = gold_count + amount
+	gold_count = new_val if new_val >= 0 else 0
+
+func get_wood_count():
+	return wood_count
+
+func increment_wood_count(amount: int):
+	var new_val = wood_count + amount
+	wood_count = new_val if new_val >= 0 else 0
 
 func reset_all_vars():
 	add_nav_spot = PackedVector2Array()
