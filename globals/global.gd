@@ -31,7 +31,7 @@ func check_workers_selected() -> bool:
 func get_gold_count() -> int:
 	return gold_count
 
-func increment_gold_count(amount: int):
+func increment_gold_count(amount: int) -> void:
 	var new_val = gold_count + amount
 	gold_count = new_val if new_val >= 0 else 0
 

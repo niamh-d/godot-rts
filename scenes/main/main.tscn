@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnxbs4q8crpuw"]
+[gd_scene load_steps=12 format=3 uid="uid://dnxbs4q8crpuw"]
 
 [ext_resource type="Texture2D" uid="uid://dfltos7cf50fk" path="res://art/town_center.png" id="1_fvj65"]
 [ext_resource type="Script" path="res://scenes/main/worker_build_options.gd" id="1_pe4bk"]
 [ext_resource type="Script" path="res://scenes/main/ui.gd" id="1_rqosp"]
+[ext_resource type="Script" path="res://scenes/main/game_objects.gd" id="1_syd6k"]
 [ext_resource type="Texture2D" uid="uid://cl2tnmjogd6br" path="res://art/house.png" id="2_ldcgo"]
 [ext_resource type="Texture2D" uid="uid://dshirno2fx1f" path="res://art/farm.png" id="3_7u6m1"]
 [ext_resource type="Texture2D" uid="uid://tjnjtm3gv56v" path="res://art/barracks.png" id="4_rc2w4"]
@@ -18,6 +19,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Main" type="Node2D"]
 
 [node name="GameObjects" type="Node2D" parent="."]
+script = ExtResource("1_syd6k")
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("1_rqosp")
