@@ -1,7 +1,7 @@
 extends Node
 
 var add_nav_spot = PackedVector2Array()
-var add_to_nav_spot = PackedVector2Array()
+var add_to_no_nav_spot = PackedVector2Array()
 var are_workers_selected := false
 var is_building_selected := false
 
@@ -53,7 +53,7 @@ func increment_wood_count(amount: int) -> void:
 
 func reset_all_vars() -> void:
 	add_nav_spot = PackedVector2Array()
-	add_to_nav_spot = PackedVector2Array()
+	add_to_no_nav_spot = PackedVector2Array()
 	are_workers_selected = false
 	is_building_selected = false
 
