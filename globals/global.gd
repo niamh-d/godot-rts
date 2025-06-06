@@ -1,5 +1,15 @@
 extends Node
 
+enum WORKER_ACTIONS {
+	WOOD,
+	BUILD,
+	ATTACK_BUILDING,
+	ATTACK_UNIT,
+	GOLD,
+	FARM,
+	TILE
+}
+
 var add_nav_spot = PackedVector2Array()
 var add_to_no_nav_spot = PackedVector2Array()
 var are_workers_selected := false
