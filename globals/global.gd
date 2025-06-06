@@ -26,8 +26,8 @@ var new_worker_target_type = null
 var new_worker_target_job = null
 var new_worker_target_id = null
 
-var enemy_units = 0
-var good_units = 0
+var num_enemy_units = 0
+var num_friendly_units = 0
 
 func _ready() -> void:
 	pass
@@ -57,6 +57,19 @@ func get_pop_count() -> int:
 func get_max_pop_count() -> int:
 	return max_pop_count
 
+func update_pop_count(val: int) -> void:
+	pop_count += val
+
+func update_num_friendly_units(val: int) -> void:
+	num_friendly_units += val
+
+func update_num_enemy_units(val: int) -> void:
+	num_enemy_units += val
+
+func increment_food_count(amount: int) -> void:
+	var new_val = food_count + amount
+	food_count = new_val if new_val >= 0 else 0
+
 func increment_wood_count(amount: int) -> void:
 	var new_val = wood_count + amount
 	wood_count = new_val if new_val >= 0 else 0
@@ -78,5 +91,5 @@ func reset_all_vars() -> void:
 	new_worker_target_job = null
 	new_worker_target_id = null
 
-	enemy_units = 0
-	good_units = 0
+	num_enemy_units = 0
+	num_friendly_units = 0
