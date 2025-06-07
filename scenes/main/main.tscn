@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dnxbs4q8crpuw"]
+[gd_scene load_steps=42 format=4 uid="uid://dnxbs4q8crpuw"]
 
 [ext_resource type="Texture2D" uid="uid://dfltos7cf50fk" path="res://art/town_center.png" id="1_fvj65"]
 [ext_resource type="Script" path="res://scenes/main/worker_build_options.gd" id="1_pe4bk"]
@@ -13,7 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://bf7scmh3mmlwy" path="res://art/range.png" id="5_bsp2h"]
 [ext_resource type="PackedScene" uid="uid://dr64p16op7hma" path="res://scenes/town_center/town_center.tscn" id="5_g6jt8"]
 [ext_resource type="Texture2D" uid="uid://btywg7dtung1p" path="res://art/tower.png" id="6_5yngy"]
+[ext_resource type="Texture2D" uid="uid://dri6ii3a768iw" path="res://art/scifiTile_13.png" id="6_c7dx7"]
 [ext_resource type="Script" path="res://scenes/main/camera.gd" id="7_1lofc"]
+[ext_resource type="Texture2D" uid="uid://gqt3d1kbi2aa" path="res://art/scifiStructure_07.png" id="7_ct1me"]
+[ext_resource type="Texture2D" uid="uid://dp0c7t6ean6ne" path="res://art/playerShip2_blue.png" id="8_0ml2d"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_adstj"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -2687,6 +2690,18 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_kb7g8")
 sources/1 = SubResource("TileSetAtlasSource_oqidm")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tl0w"]
+size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvct2"]
+size = Vector2(79, 80)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vv105"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuxdl"]
+bg_color = Color(0, 1, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_lufi6"]
 font_size = 120
 outline_size = 20
@@ -2707,17 +2722,179 @@ script = ExtResource("3_fahi4")
 [node name="Worker" parent="GameObjects" instance=ExtResource("4_s5rmr")]
 position = Vector2(580, 291)
 
-[node name="TownCenter" parent="GameObjects" instance=ExtResource("5_g6jt8")]
+[node name="TestTownCenter" type="Area2D" parent="GameObjects"]
 position = Vector2(200, 200)
 
-[node name="Sprite2D" parent="GameObjects/TownCenter/BuildingSprite" index="0"]
-position = Vector2(200, 199)
+[node name="Ground" type="Sprite2D" parent="GameObjects/TestTownCenter"]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("6_c7dx7")
 
-[node name="Image" parent="GameObjects/TownCenter/CanvasLayer/RemoveBtn" index="0"]
-position = Vector2(15, 509)
+[node name="BuildingSprite" type="Node2D" parent="GameObjects/TestTownCenter"]
 
-[node name="Image" parent="GameObjects/TownCenter/CanvasLayer/AddWorkerBtn" index="0"]
-position = Vector2(55, 509)
+[node name="Sprite2D" type="Sprite2D" parent="GameObjects/TestTownCenter/BuildingSprite"]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("7_ct1me")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/TestTownCenter"]
+shape = SubResource("RectangleShape2D_7tl0w")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameObjects/TestTownCenter"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameObjects/TestTownCenter/StaticBody2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_dvct2")
+
+[node name="ProgressBar" type="ProgressBar" parent="GameObjects/TestTownCenter"]
+offset_left = -48.0
+offset_top = -49.0
+offset_right = 48.0
+offset_bottom = -44.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vv105")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uuxdl")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="ButtonTC" type="Button" parent="GameObjects/TestTownCenter"]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_type_variation = &"FlatButton"
+
+[node name="TimerWorker" type="Timer" parent="GameObjects/TestTownCenter"]
+wait_time = 2.0
+one_shot = true
+
+[node name="TimerUiOn" type="Timer" parent="GameObjects/TestTownCenter"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GameObjects/TestTownCenter"]
+offset = Vector2(0, 500)
+transform = Transform2D(1, 0, 0, 1, 0, 500)
+
+[node name="RemoveBtn" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer"]
+position = Vector2(14, 9)
+
+[node name="Image" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer/RemoveBtn"]
+
+[node name="ColorRect" type="ColorRect" parent="GameObjects/TestTownCenter/CanvasLayer/RemoveBtn/Image"]
+offset_right = 31.0
+offset_bottom = 32.0
+color = Color(1, 0.00392157, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="GameObjects/TestTownCenter/CanvasLayer/RemoveBtn/Image/ColorRect"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 37.0
+offset_bottom = 7.0
+rotation = 0.785398
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="GameObjects/TestTownCenter/CanvasLayer/RemoveBtn/Image/ColorRect"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 6.0
+offset_right = 59.0
+offset_bottom = 10.0
+rotation = 2.35619
+color = Color(0, 0, 0, 1)
+
+[node name="ButtonRemove" type="Button" parent="GameObjects/TestTownCenter/CanvasLayer/RemoveBtn/Image"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_right = 31.0
+offset_bottom = 32.0
+
+[node name="AddWorkerBtn" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer"]
+position = Vector2(54, 9)
+
+[node name="Image" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer/AddWorkerBtn"]
+
+[node name="ColorRect" type="ColorRect" parent="GameObjects/TestTownCenter/CanvasLayer/AddWorkerBtn/Image"]
+offset_right = 31.0
+offset_bottom = 32.0
+color = Color(0.32888, 0.767577, 0.408805, 1)
+
+[node name="ButtonAddWorker" type="Button" parent="GameObjects/TestTownCenter/CanvasLayer/AddWorkerBtn/Image"]
+self_modulate = Color(1, 1, 1, 0.392157)
+offset_right = 31.0
+offset_bottom = 32.0
+
+[node name="Sprite2D" type="Sprite2D" parent="GameObjects/TestTownCenter/CanvasLayer/AddWorkerBtn/Image"]
+texture_filter = 1
+position = Vector2(15, 14)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_0ml2d")
+
+[node name="Q1" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer"]
+position = Vector2(95, 49)
+
+[node name="Image" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer/Q1"]
+
+[node name="ColorRect" type="ColorRect" parent="GameObjects/TestTownCenter/CanvasLayer/Q1/Image"]
+offset_right = 31.0
+offset_bottom = 32.0
+color = Color(0.32888, 0.767577, 0.408805, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="GameObjects/TestTownCenter/CanvasLayer/Q1/Image"]
+texture_filter = 1
+position = Vector2(15, 14)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_0ml2d")
+
+[node name="Q2" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer"]
+position = Vector2(135, 49)
+
+[node name="Image" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer/Q2"]
+
+[node name="ColorRect" type="ColorRect" parent="GameObjects/TestTownCenter/CanvasLayer/Q2/Image"]
+offset_right = 31.0
+offset_bottom = 32.0
+color = Color(0.32888, 0.767577, 0.408805, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="GameObjects/TestTownCenter/CanvasLayer/Q2/Image"]
+texture_filter = 1
+position = Vector2(15, 14)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_0ml2d")
+
+[node name="Q3" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer"]
+position = Vector2(175, 49)
+
+[node name="Image" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer/Q3"]
+
+[node name="ColorRect" type="ColorRect" parent="GameObjects/TestTownCenter/CanvasLayer/Q3/Image"]
+offset_right = 31.0
+offset_bottom = 32.0
+color = Color(0.32888, 0.767577, 0.408805, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="GameObjects/TestTownCenter/CanvasLayer/Q3/Image"]
+texture_filter = 1
+position = Vector2(15, 14)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_0ml2d")
+
+[node name="Q4" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer"]
+position = Vector2(215, 49)
+
+[node name="Image" type="Node2D" parent="GameObjects/TestTownCenter/CanvasLayer/Q4"]
+
+[node name="ColorRect" type="ColorRect" parent="GameObjects/TestTownCenter/CanvasLayer/Q4/Image"]
+offset_right = 31.0
+offset_bottom = 32.0
+color = Color(0.32888, 0.767577, 0.408805, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="GameObjects/TestTownCenter/CanvasLayer/Q4/Image"]
+texture_filter = 1
+position = Vector2(15, 14)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_0ml2d")
+
+[node name="TownCenter" parent="GameObjects" instance=ExtResource("5_g6jt8")]
+visible = false
+position = Vector2(200, 200)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("1_rqosp")
@@ -2964,5 +3141,3 @@ script = ExtResource("7_1lofc")
 [connection signal="pressed" from="UI/WorkerBuildOptions/Barracks/Sprite2D/ButtonBuildBarracks" to="UI/WorkerBuildOptions" method="_on_button_build_barracks_pressed"]
 [connection signal="pressed" from="UI/WorkerBuildOptions/Range/Sprite2D/ButtonBuildRange" to="UI/WorkerBuildOptions" method="_on_button_build_range_pressed"]
 [connection signal="pressed" from="UI/WorkerBuildOptions/Tower/Sprite2D/ButtonBuildTower" to="UI/WorkerBuildOptions" method="_on_button_build_tower_pressed"]
-
-[editable path="GameObjects/TownCenter"]
