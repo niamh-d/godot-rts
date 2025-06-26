@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dr64p16op7hma"]
+[gd_scene load_steps=11 format=3 uid="uid://dr64p16op7hma"]
 
+[ext_resource type="Script" path="res://scenes/town_center/town_center.gd" id="1_hvmvm"]
 [ext_resource type="Texture2D" uid="uid://dri6ii3a768iw" path="res://art/scifiTile_13.png" id="1_xit48"]
 [ext_resource type="Texture2D" uid="uid://gqt3d1kbi2aa" path="res://art/scifiStructure_07.png" id="2_e2ykh"]
+[ext_resource type="PackedScene" uid="uid://brfjofh3npqoo" path="res://scenes/ClearedBlock/cleared_block.tscn" id="2_rtwrn"]
+[ext_resource type="PackedScene" uid="uid://blkfh84nbicpu" path="res://scenes/worker/worker.tscn" id="3_biwar"]
 [ext_resource type="Texture2D" uid="uid://dp0c7t6ean6ne" path="res://art/playerShip2_blue.png" id="3_ghs0i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tl0w"]
@@ -17,6 +20,9 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(0, 1, 0, 1)
 
 [node name="TownCenter" type="Area2D"]
+script = ExtResource("1_hvmvm")
+cleared_block = ExtResource("2_rtwrn")
+new_worker = ExtResource("3_biwar")
 
 [node name="Ground" type="Sprite2D" parent="."]
 scale = Vector2(1.25, 1.25)
@@ -184,3 +190,10 @@ texture_filter = 1
 position = Vector2(15, 14)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_ghs0i")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="pressed" from="ButtonTC" to="." method="_on_button_tc_pressed"]
+[connection signal="timeout" from="TimerWorker" to="." method="_on_timer_worker_timeout"]
+[connection signal="timeout" from="TimerUiOn" to="." method="_on_timer_ui_on_timeout"]
+[connection signal="pressed" from="CanvasLayer/RemoveBtn/Image/ButtonRemove" to="." method="_on_button_remove_pressed"]
+[connection signal="pressed" from="CanvasLayer/AddWorkerBtn/Image/ButtonAddWorker" to="." method="_on_button_add_worker_pressed"]

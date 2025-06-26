@@ -47,7 +47,7 @@ func _ready() -> void:
 	Global.update_num_friendly_units(1)
 	Global.update_pop_count(1)
 	
-	new_id = generate_id(10)
+	new_id = Utils.generate_id(10)
 	add_to_group("unit")
 	
 func _physics_process(delta: float) -> void:
@@ -244,7 +244,8 @@ func get_to_work(area: Area2D) -> void:
 	using_worker_tools = true
 	worker_body.look_at(area.position)
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func _on_area_2d_area_entered(area) -> void:
+	
 	if (area.is_in_group("built_building")
 	&& job_building):
 		using_worker_tools = false
@@ -261,12 +262,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		worker_body.look_at(area.position)
 		go_back_to_resource_source()
 	
-	if (area.id == target_id
-	&& (area.is_in_group("unbuilt_building")
+	if ((area.is_in_group("unbuilt_building")
 	&& job_building) || (area.is_in_group("tree")
 	&& job_cutting_wood) || (area.is_in_group("gold")
 	&& job_mining_gold) || (area.is_in_group("farm")
-	&& job_farming_farm)):
+	&& job_farming_farm)
+	&& area.new_id == target_id):
 		get_to_work(area)
 	
 	if area.is_in_group("enemy_laser"):
@@ -360,13 +361,3 @@ func check_if_no_more_resources_for_jobs() -> void:
 
 func _on_timer_shoot_timeout() -> void:
 	is_able_to_shoot = true
-
-func generate_id(length) -> String:
-	var chars = 'abcdefghijklmnopqrstuvwxyz'
-	var id: String
-	var n_chars = len(chars)
-	
-	for i in range(length):
-		id += chars[randi() % n_chars]
-	
-	return id

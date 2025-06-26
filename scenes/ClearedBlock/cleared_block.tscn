@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://brfjofh3npqoo"]
+
+[ext_resource type="Texture2D" uid="uid://dri6ii3a768iw" path="res://art/scifiTile_13.png" id="1_7y38i"]
+
+[node name="ClearedBlock" type="Sprite2D"]
+position = Vector2(32, 32)
+texture = ExtResource("1_7y38i")

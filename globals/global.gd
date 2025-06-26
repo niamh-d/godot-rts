@@ -56,9 +56,16 @@ func get_pop_count() -> int:
 
 func get_max_pop_count() -> int:
 	return max_pop_count
+	
+func pop_is_maxed_out() -> bool:
+	return pop_count >= max_pop_count
 
 func update_pop_count(val: int) -> void:
 	pop_count += val
+
+func update_max_pop_count(val: int) -> void:
+	var new_val = max_pop_count + val
+	max_pop_count = new_val if new_val >= 0 else 0
 
 func update_num_friendly_units(val: int) -> void:
 	num_friendly_units += val
